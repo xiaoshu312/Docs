@@ -8,8 +8,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      pages: write   # 必须赋予 Pages 写入权限
-      id-token: write  # 必须赋予 OIDC 令牌权限
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: https://xiaoshu312.github.io/Docs
@@ -23,16 +23,19 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm install --force  # 强制重新安装依赖
+        run: npm install --force
+
+      - name: Fix permissions
+        run: chmod -R +x node_modules/.bin  # 修复权限问题
 
       - name: Build
         run: npm run docs:build
 
       - name: Verify build output
-        run: ls -al docs/.vitepress/dist  # 检查构建目录是否存在
+        run: ls -al docs/.vitepress/dist
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v3
         with:
-          artifact_name: vitepress-site  # 自定义产物名称
-          publish_dir: docs/.vitepress/dist  # 必须与 VitePress 输出目录一致
+          artifact_name: vitepress-site
+          publish_dir: docs/.vitepress/dist
