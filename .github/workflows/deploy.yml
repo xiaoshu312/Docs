@@ -12,9 +12,14 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: https://xiaoshu312.github.io/Docs
+      url: https://xiaoshu312.github.io/Docs/
     steps:
       - uses: actions/checkout@v4
+
+      - name: Clean cache
+        run: |
+          npm cache clean --force
+          rm -rf docs/.vitepress/dist
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -25,17 +30,13 @@ jobs:
       - name: Install dependencies
         run: npm install --force
 
-      - name: Fix permissions
-        run: chmod -R +x node_modules/.bin  # 修复权限问题
-
       - name: Build
         run: npm run docs:build
 
       - name: Verify build output
-        run: ls -al docs/.vitepress/dist
+        run: ls -al docs/.vitepress/dist  # 确认目录存在
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v3
         with:
-          artifact_name: vitepress-site
-          publish_dir: docs/.vitepress/dist
+          artifact_name: vitepress-site  # 与 VitePress 构建目录匹配
