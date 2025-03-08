@@ -12,7 +12,7 @@ jobs:
       id-token: write  # 必须赋予 OIDC 令牌权限
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: https://xiaoshu312.github.io/Docs
     steps:
       - uses: actions/checkout@v4
 
