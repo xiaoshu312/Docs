@@ -9,6 +9,7 @@ export default defineConfig({
   description: "A place where Xiaoshu312 used to write articles.",
   head: headConfig,
   themeConfig: enUSThemeConfig,
+  base: '/Docs/'
   locales: {
     root: {
       label: 'English',
