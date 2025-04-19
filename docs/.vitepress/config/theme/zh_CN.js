@@ -10,7 +10,8 @@ const zhCNThemeConfig = {
         {
             text: '',
             items: [
-                { text: '主页', link: '/zh/' }
+                { text: '主页', link: '/zh/' },
+                { text: '更多信息', link: '/zh/more' }
             ]
         }
     ],
@@ -21,7 +22,7 @@ const zhCNThemeConfig = {
 
     footer: {
         message: `根据 GPLv3 许可证进行授权`,
-        copyright: '版权所有 © 2025 Xiaoshu312'
+        copyright: '版权所有 © 2025 <a href="https://github.com/xiaoshu312">小树的小窝</a>'
     },
 
     editLink: {
